@@ -1,11 +1,12 @@
 import Header from "@/components/Header";
-import { useRouter } from "next/router";
 
-import readings from "../../../data.json";
+import readingsJSON from "../../../data.json";
+import Reading from "@/components/Reading";
+import { IReading } from "@/types";
 
 export async function getStaticPaths() {
-  const paths = readings.ntlh.map((_, i) => {
-    return { params: { day: String(i) } };
+  const paths = readingsJSON.ntlh.map((_, i) => {
+    return { params: { day: String(i + 1) } };
   });
 
   return {
@@ -16,28 +17,42 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context: any) {
   const day = context.params.day;
+  const indexDay = day - 1;
 
-  const reading = readings.ntlh[Number(day)];
+  const { readings } = readingsJSON.ntlh[Number(indexDay)];
 
   return {
-    props: reading,
+    props: {
+      readings,
+      day,
+    },
   };
 }
 
-export default function PaginaLeitura(props: any) {
-  console.log(props);
+interface IProps {
+  day: string;
+  readings: IReading[];
+}
+
+export default function ReadingPage(props: IProps) {
+  console.log(props.readings);
+
   return (
     <>
-      <Header title="leitura" />
+      <Header title={`Dia ${props.day}`} />
 
-      {props.readings.map((v: any) => (
-        <>
+      {props.readings.map((reading) => (
+        <Reading key={reading.title} reading={reading} />
+      ))}
+
+      {/* {props.readings.map((v: any) => (
+        <div key="">
           <h1>{v.title}</h1>
           <h4>{v.subtitle}</h4>
 
           <p>{v.verses[0].text}</p>
-        </>
-      ))}
+        </div>
+      ))} */}
     </>
   );
 }

@@ -18,6 +18,8 @@ body {
   --color-verse: #52525b;
 
   background: #f4f4f5;
+
+  -webkit-font-smoothing: antialiased;
 }
 
 .color-header {

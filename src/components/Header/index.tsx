@@ -11,7 +11,7 @@ export default function Header({ title }: HeaderProps) {
 
   return (
     <header className="flex items-center">
-      <h1 className="color-header text-xl flex-1">{title}</h1>
+      <h1 className="color-header text-3xl flex-1">{title}</h1>
 
       <button
         style={{ all: "unset" }}
