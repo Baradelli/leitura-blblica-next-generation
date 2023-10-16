@@ -8,7 +8,8 @@ interface HeaderProps {
 }
 
 export default function Header({ title }: HeaderProps) {
-  const [currentTheme, setCurrentTheme] = useState<"dark" | "light">("light");
+  const [currentTheme, setCurrentTheme] = useState<"light" | "dark">("light");
+
   const [isInHome, setIsInHome] = useState(false);
 
   useEffect(() => {
