@@ -35,8 +35,6 @@ interface IProps {
 }
 
 export default function ReadingPage(props: IProps) {
-  console.log(props.readings);
-
   return (
     <>
       <Header title={`Dia ${props.day}`} />
