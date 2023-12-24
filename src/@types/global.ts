@@ -9,3 +9,13 @@ export interface IVerse {
   verse: number;
   text: string;
 }
+
+export type BibleVersions =
+  | "ACF"
+  | "ARA"
+  | "ARC"
+  | "KJA"
+  | "NAA"
+  | "NTLH"
+  | "NVI"
+  | "NVT";
