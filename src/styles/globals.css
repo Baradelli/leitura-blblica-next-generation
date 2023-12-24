@@ -8,6 +8,8 @@ body[data-theme="dark"] {
   --color-text: #e4e4e7;
   --color-verse: #a1a1aa;
 
+  --bg-highlight: #143a4e;
+
   background: #18181b;
 }
 
@@ -16,6 +18,8 @@ body {
   --color-title: #18181b;
   --color-text: #27272a;
   --color-verse: #52525b;
+
+  --bg-highlight: #e7f3f8;
 
   background: #f4f4f5;
 
@@ -33,4 +37,7 @@ body {
 }
 .color-verse {
   color: var(--color-verse);
+}
+.color-highlight {
+  background-color: var(--bg-highlight);
 }
