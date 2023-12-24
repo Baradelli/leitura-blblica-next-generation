@@ -1,9 +1,35 @@
-import Header from "@/components/Header";
+import { useEffect, useState } from "react";
 
-import readings from "../../data.json";
+import { IReadingsList } from "@/@types/res";
+
+import { api } from "@/http/api";
+
+import Header from "@/components/Header";
 import Link from "next/link";
 
 export default function Home() {
+  const [readingsList, setReadingsList] = useState<IReadingsList[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const getReadingsList = async () => {
+    try {
+      if (isLoading) return;
+      setIsLoading(true);
+
+      const { data } = await api.readings.list();
+
+      setReadingsList(data.list);
+    } catch (error) {
+      console.log("ERROR: ", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getReadingsList();
+  }, []);
+
   return (
     <>
       <Header title="Bem vindo" />
@@ -15,17 +41,21 @@ export default function Home() {
         </span>
       </div>
 
-      {readings.ntlh.map((_, i) => (
-        <Link
-          href={`leituras/${i + 1}`}
-          key={i}
-          className="flex gap-2 items-center"
-        >
-          <i className="fa-solid fa-circle text-[8px] color-verse" />
+      {readingsList.length ? (
+        <>
+          {readingsList.map(({ id, title }) => (
+            <Link
+              href={`leituras/${id}`}
+              key={id}
+              className="flex gap-2 items-center"
+            >
+              <i className="fa-solid fa-circle text-[8px] color-verse" />
 
-          <span className="text-lg color-text">Dia {i + 1}</span>
-        </Link>
-      ))}
+              <span className="text-lg color-text">{title}</span>
+            </Link>
+          ))}
+        </>
+      ) : null}
     </>
   );
 }

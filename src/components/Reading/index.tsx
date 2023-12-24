@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import { IReading } from "@/@types/global";
-import { Verse } from "./components/Verse";
 
 interface ReadingProps {
   reading: IReading;
