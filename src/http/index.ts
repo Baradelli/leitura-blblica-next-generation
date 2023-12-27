@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const http = axios.create({
-  baseURL: "http://181.215.134.4:3333",
+  baseURL: "https://api-leituras.adcfranco.com",
   headers: {
     Accept: "application/json",
     Content: "application/json",
