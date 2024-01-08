@@ -52,6 +52,10 @@ export default function ReadingPage() {
   useEffect(() => {
     const id = routerQuery.id;
 
+    if (!id) return;
+
+    console.log(routerQuery);
+
     getReadings(Number(id));
   }, [routerQuery]);
 
